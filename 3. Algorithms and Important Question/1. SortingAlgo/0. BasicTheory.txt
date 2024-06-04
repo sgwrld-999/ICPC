@@ -1,0 +1,24 @@
+Sorting
+
+Definition:
+- Rearranging a list or array of elements according to a comparison operator.
+- Orders elements in ascending or descending order.
+
+Sorting Terminology:
+- In-place Sorting: Uses constant space, modifies the original array.
+    - Examples: Selection Sort, Bubble Sort, Insertion Sort, Heap Sort.
+- Internal Sorting: Data fits in main memory.
+    - Examples: Heap Sort, Bubble Sort, Selection Sort, Quick Sort, Shell Sort, Insertion Sort.
+- External Sorting: Data does not fit in memory, used for large datasets.
+    - Examples: Merge Sort, Tag Sort, Polyphase Sort, Four Tape Sort,- Space Complexity: Memory required to execute the algorithm.
+- Stability: Whether the algorithm preserves the order of equal elements.
+- In-Place Sorting: Does not need extra memory for sorting.
+- Adaptivity: Improves performance if data is already partially sorted.
+
+Applications of Sorting Algorithms:
+- Searching Algorithms: Prepares data for efficient searching (e.g., binary search).
+- Data Management: Easier data search, retrieval, and analysis.
+- Database Optimization: Improves query performance.
+- Machine Learning: Prepares data for training models.
+- Data Analysis: Identifies patterns, trends, and outliers.
+- Operating Systems: Used in task scheduling, memory management, and file organization.
