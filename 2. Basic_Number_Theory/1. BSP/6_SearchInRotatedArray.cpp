@@ -9,7 +9,7 @@ Explanation  : We are given an integer array nums sorted in ascending order, and
                You should search for target in nums and if you found the target in the array return its index, otherwise return -1.
                We can use binary search to solve this problem.
                How? By using the property of the sorted array.
-               For sorted array for every i < j , nums[i] < nums[j] or nums[i](Increasing order) > nums[j](Decreasing order)
+               For sorted array for every i < j , nums[i] < nums[j](Increasing order) or nums[i] > nums[j](Decreasing order)
                So, we can use this property to find the target element.
                Rest explanation is in the code.               
 */
