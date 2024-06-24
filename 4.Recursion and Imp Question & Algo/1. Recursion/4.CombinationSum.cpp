@@ -32,7 +32,7 @@ If we don't pick it then the target sum will be 1 and the array will be [2,3,6,7
 Since no match is found we've to backtrack.
 
 For case where 2 is picked 2 times we haven't picked again 2 so we'll move towards the index 1 i.e 3.
-If we pick 3 then the target sum will be 7-4-3 = 4 and the array will be [2,3,6,7].
+If we pick 3 then the target sum will be 7-4-3 = 0 and the array will be [2,3,6,7].
 
 return the answer.
 
