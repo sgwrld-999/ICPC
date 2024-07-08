@@ -2,13 +2,13 @@
 using namespace std;
 /*
 Problem name : Koko Eating Bananas
-Problem link : https://practice.geeksforgeeks.org/problems/0b1f6
+Problem link : https://leetcode.com/problems/koko-eating-bananas/description/
 Explanation : Koko loves to eat bananas. There are N piles of bananas, the i-th pile has piles[i] bananas. The guards have gone and will come back in H hours.
 Koko can decide her bananas-per-hour eating speed of K. Each hour, she chooses some pile of bananas and eats K bananas from that pile. If the pile has less than K bananas, she eats all of them instead and will not eat any more bananas during this hour.
 
 According to the problem, Koko wants to eat all the bananas in the least number of hours. Return the minimum integer K such that she can eat all the bananas within H hours.
 Brute force approach : We can iterate over all the possible values of K from 1 to max(piles) and calculate the total hours required to eat all the bananas. We can return the minimum K such that the total hours are less than or equal to H.
-Why max(piles)? Because we've to find the minimum. We can iterate over the range of 1 to infinity but that will no gonna do any good.
+Why max(piles)? Because we've to find the minimum. We can iterate over the range of 1 to infinity but that will not gonna do any good.
 So, limiting the range to max(piles) will help us to find the minimum in the least time.
 Time complexity : O(n*max(piles)) where n is the size of the piles array.
 
@@ -77,3 +77,18 @@ int main() {
     }
     return 0;
 }
+/*
+Test cases: 
+Input :
+2
+4
+3 6 7 11
+8
+5
+30 11 23 4 20
+6
+Output :
+4
+23
+
+*/

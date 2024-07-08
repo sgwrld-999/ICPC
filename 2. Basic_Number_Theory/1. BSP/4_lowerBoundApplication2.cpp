@@ -1,4 +1,3 @@
-
 /*
 Problem : Find the floor and ceil of a number in a sorted array
 Problem Link : https://www.geeksforgeeks.org/floor-in-a-sorted-array/
@@ -66,3 +65,19 @@ int main() {
 	return 0;
 }
 // } Driver Code Ends
+
+/*
+Test cases: 
+1
+7
+0
+1 2 8 10 10 12 19
+
+Test case 2:
+1
+7
+5
+1 2 8 10 10 12 19
+
+Output : -1
+*/

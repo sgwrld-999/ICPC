@@ -35,6 +35,13 @@ From 16 to 24 -> 4
 ..
 From (n-1)^2 to (n)^2-1 -> n-1
 For n^2 -> n
+
+The idea is to find the number which is less than or equal to the given number.
+Or terminate the half as the number is not a perfect square or can be a perfect square.
+How we are eliminating the half?
+We can see that if the mid element is less than the number then we can move to the right side.
+If the mid element is greater than the number then we can move to the left side.
+If the mid element is equal to the number then we can return the mid element.
 */
 
 class Solution {
@@ -77,3 +84,10 @@ int main() {
     }
     return 0;
 }
+/*
+Testcase : 
+1
+5
+Output : 2
+
+*/

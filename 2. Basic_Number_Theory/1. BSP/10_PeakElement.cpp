@@ -11,21 +11,13 @@ Explanation :
     If the mid element is less than the mid-1 element then the peak element will be on the left side of the mid element.
     We can see that the peak element will be the element which is greater than its neighbours.
     So we can use binary search to find the peak element.
-    We can see that if the mid element is greater than its neighbours then it is the peak element.
-    If the mid element is not the peak element then we can see that if the mid element is less than the mid+1 element then the peak element will be on the right side of the mid element.
-    If the mid element is less than the mid-1 element then the peak element will be on the left side of the mid element.
-    We can see that the peak element will be the element which is greater than its neighbours.
-    So we can use binary search to find the peak element.
-    We can see that if the mid element is greater than its neighbours then it is the peak element.
-    If the mid element is not the peak element then we can see that if the mid element is less than the mid+1 element then the peak element will be on the right side of the mid element.
-    If the mid element is less than the mid-1 element then the peak element will be on the left side of the mid element.
-    We can see that the peak element will be the element which is greater than its neighbours.
-    So we can use binary search to find the peak element.
-    We can see that if the mid element is greater than its neighbours then it is the peak element.
-    If the mid element is not the peak element then we can see that if the mid element is less than the mid+1 element then the peak element will be on the right side of the mid element.
-    If the mid element is less than the mid-1 element then the peak element will be on the left side of the mid element.
-    We can see that the peak element will be the element which is greater than its neighbours.
-    So we can use binary search to find
+
+    Imagine as a mountain, To reach the mountain thier will be a peak point and to reach it a slope will be thier.
+    If the mid element is greater than its neighbours then it is the peak element.
+    If isn't then we can say we are at the increaing slope of the mountain so we can move to the right side.
+    But if the mid element is less than its neighbours then we can say we are at the decreasing slope of the mountain so we can move to the left side.
+    We can use this property to find the peak element.  
+    
 */
 
 
@@ -58,6 +50,7 @@ int main(int argc, char const *argv[])
     for (int i = 0; i < sizeOfVec ; i++)
     {
         int temp ;
+        cin >> temp ;
         arr.push_back(temp);
     }
     Solution obj;
@@ -65,3 +58,11 @@ int main(int argc, char const *argv[])
     cout << "The peak is at the " << resultantIndex << " index in the array.";
     return 0;
 }
+
+/*
+Test Cases:
+
+input :
+    5
+    1 2 5 4 5
+*/

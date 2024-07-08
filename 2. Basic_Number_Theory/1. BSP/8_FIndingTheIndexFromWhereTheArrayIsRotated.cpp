@@ -9,8 +9,8 @@ Explanation : Given an integer array nums sorted in non-decreasing order, find t
               Example 1: Input: nums = [3,4,5,1,2]
                          Output: 1
                          Explanation: The original array was [1,2,3,4,5] rotated 3 times. So the minimum element is 1.
-               How we going to solve this problem?First approach is 
-               to use the linear search which will take O(n) time complexity. But we can solve this problem in O(logn) time complexity
+                How we going to solve this problem?First approach is 
+                to use the linear search which will take O(n) time complexity. But we can solve this problem in O(logn) time complexity
                 by using the binary search. For the binary search we need to find the pivot element from where the array is rotated.
                 For that we need to eliminate the half of the array in each iteration. But which part to be eliminated is the question.
                 We'll eliminate the sorted part of the array as the pivot element will be in the unsorted part of the array. But

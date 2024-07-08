@@ -27,3 +27,17 @@ public:
 };
 
 
+int main(int argc, char const *argv[]) {
+    int sizeOfIpVec;
+    cin >> sizeOfIpVec;
+    vector<int> ipVec(sizeOfIpVec);
+    for (int i = 0; i < sizeOfIpVec; i++) {
+        cin >> ipVec[i];
+    }
+    Solution solution;
+    int target;
+    cin >> target;
+    int result = solution.searchInsert(ipVec, target);
+    cout << "Index : " << result << endl;
+    return 0;
+}

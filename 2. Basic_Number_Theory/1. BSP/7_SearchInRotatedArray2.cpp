@@ -13,7 +13,7 @@ Explanation : We are given an integer array nums sorted in non-decreasing order,
               Example : [3,3,1,3,3,3,3] and target = 1 -> If we apply the above logic then we will get the answer as -1 but the answer is 2. Why so?
               low = 0, high = 6, mid = 3, nums[mid] = 3, nums[low] = 3, nums[high] = 3, nums[low] == nums[mid] == nums[high] Now which half to eleminate? We can't decide.
               So instead of eleminating the half we will trim down the search space by decrementing high and incrementing low and restarting the loop.
-              Rest explanation is in the code.               
+              Rest explanation is in the code.            
 
 */
 class MySolution {

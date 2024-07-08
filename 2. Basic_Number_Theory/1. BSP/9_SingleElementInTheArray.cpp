@@ -16,7 +16,6 @@ Explanation  : Given a sorted array contains pair of elements except one element
                 For triming down the search space we can see that 
                 if mid is even so the next element should be same as mid element 
                 and if the mid is odd so the previous element should be same as mid element if this is the case then we will remove the left side as the element is on the right side.
-                
 */
 //{ Driver Code Starts
 #include <bits/stdc++.h>
@@ -72,3 +71,10 @@ int main()
 }
 
 // } Driver Code Ends
+/*
+Test cases:
+1
+7
+1 1 2 2 3 3 4
+Output: 4
+*/
