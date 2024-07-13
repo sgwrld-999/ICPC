@@ -16,7 +16,7 @@ vector<long long> precompute_hashes(const string &s, const vector<long long> &p)
     int n = s.size();
     vector<long long> h(n + 1, 0);
     for (int i = 0; i < n; i++) {
-        h[i + 1] = (h[i] + (s[i] - 'a' + 1) *                                                                                                                                                                                                       p[i]) % mod;
+        h[i + 1] = (h[i] + (s[i] - 'a' + 1) * p[i]) % mod;                                                                                                                                                                                                    p[i]) % mod;
     }
     return h;
 }
