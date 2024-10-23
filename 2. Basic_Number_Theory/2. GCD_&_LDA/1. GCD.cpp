@@ -9,10 +9,14 @@ The idea is, GCD of two numbers doesn’t change if smaller number is subtracted
 
 GCD(a, b) = GCD(b, a%b) = GCD(b, a-b) == GCD(b-a,a)
 
-*/
+*/ 
 int gcd(int a, int b) {
     if(b == 0) return a;
     return gcd(b, a%b);
+}
+
+int lcm(int a,int b){
+    return (a / gcd(a,b)) * b ;
 }
 int main(int argc, char const *argv[])
 {
