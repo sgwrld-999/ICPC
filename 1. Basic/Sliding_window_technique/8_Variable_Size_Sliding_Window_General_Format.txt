@@ -1,0 +1,60 @@
+1. Fixed size general format:
+
+int left = 0, right = 0;
+
+while (right < size) {
+    // Include current element in window calculation
+    // e.g., sum += arr[right];
+
+    int windowSize = right - left + 1;
+
+    if (windowSize < k) {
+        // Expand the window
+        right++;
+    }
+    else if (windowSize == k) {
+        // Perform required operation on the window
+        // e.g., ans = max(ans, sum);
+
+        // Slide the window:
+        // - Remove the element going out of the window
+        // - Maintain window size
+        // e.g., sum -= arr[left];
+        left++;
+        right++;
+    }
+}
+
+
+2. Variable size general format:
+
+int left = 0, right = 0;
+
+while (right < size) {
+    // Include current element in window calculation
+    // e.g., sum += arr[right];
+
+   
+
+    if (conditionWillBeGivenOnTheQuestion < k) {
+        // Expand the window
+        right++;
+    }
+    else if (conditionWillBeGivenOnTheQuestion == k) {
+        // Perform required operation on the window
+        // e.g., ans = max(ans, sum);
+
+        // Slide the window:
+        // - Remove the element going out of the window
+        // - Maintain window size
+        // e.g., sum -= arr[left];
+    }
+
+    else if(conditionWillBeGivenOnTheQuestion > k){
+        while(conditionWillBeGivenOnTheQuestion > k)
+            Remove calculation for left 
+                left++
+    }
+
+    right++
+}

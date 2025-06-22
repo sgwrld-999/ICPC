@@ -1,0 +1,19 @@
+Sliding Window — Variable Size
+
+Identification:
+You’re dealing with a variable-size sliding window when:
+1. You're given a string or an array.
+2. You need to find a sub-array/substring that satisfies a condition (like a sum, product, number of unique characters, etc.).
+3. The window size is not fixed — it changes dynamically based on a condition.
+
+Difference: Fixed Size vs Variable Size Window
+----------------------------------------------
+| Aspect               | Fixed Size Window                      | Variable Size Window                             |
+|----------------------|----------------------------------------|--------------------------------------------------|
+| Window Size          | Fixed (e.g., size k)                   | Dynamic (changes based on condition)             |
+| Common Use-Case      | Max/Min/Sum of all sub-arrays of size k | Smallest/Largest sub-array that satisfies a condition |
+| Template Pattern     | right - left + 1 == k to trigger actions | Use while loop(s) to shrink or expand window     |
+| Examples             | Max Sliding Window (Leetcode 239)      | Min Subarray Sum ≥ target (Leetcode 209)         |
+| Main Operation       | Slide window once size is k            | Shrink/Expand based on sum/condition             |
+| Control Flow         | Usually if block to check k            | Usually while loop inside main loop for conditions|
+|----------------------|----------------------------------------|--------------------------------------------------|

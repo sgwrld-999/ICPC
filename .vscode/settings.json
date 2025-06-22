@@ -1,9 +1,11 @@
 {
     "files.associations": {
+        "*.dbclient-js": "javascript",
         "vector": "cpp",
         "numeric": "cpp",
         "queue": "cpp",
         "iosfwd": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "deque": "cpp"
     }
 }
