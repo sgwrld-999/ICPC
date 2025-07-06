@@ -20,7 +20,7 @@ public:
     // Explanation: The first negative integers in the windows of size 3 are:
     // Window 1: {-1, 2, -3} -> First negative is -1
     // Window 2: {2, -3, 4} -> First negative is -3
-    // Window 3: {-3, 4, -5} -> First negative is -5
+    // Window 3: {-3, 4, -5} -> First negative is -3
     // Window 4: {4, -5} -> First negative is -5
     // If a window does not contain any negative integers, 0 is returned for that window.
     // Example: arr = {1, 2, 3}, k = 2 -> Output: {0, 0}
