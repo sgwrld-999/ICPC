@@ -1,48 +1,47 @@
 #include<bits/stdc++.h>
 using namespace std;
-/*
-Problem link : https://www.geeksforgeeks.org/problems/square-root/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article
-Problem name : Square root of a perfect square
-Explanation we've to find the square root of a number.
-Brute force approach : We can iterate from 1 to n and check if i*i is equal to n or not. Time complexity of this approach is O(n).
-Optimal approach : We can use binary search to find the square root of a number. Time complexity of this approach is O(log(n)).
-How?
-1^2 = 1
-2^2 = 4
-3^2 = 9
-4^2 = 16
-5^2 = 25
-6^2 = 36
-.
-.
-.
 
-
-n^2 = n*n
-
-
-According to the question if the number if not a perfect number then check with floor function.
-For example : 5 -> floor(sqrt(5)) : 
-
-
-Here 1 2 3 4 5 6 7 8 9 10 11 .......n
-Form 1 to 3 ->  1
-From 4 to 8 -> 2
-From 9 to 15 -> 3
-From 16 to 24 -> 4
-..
-..
-..
-From (n-1)^2 to (n)^2-1 -> n-1
-For n^2 -> n
-
-The idea is to find the number which is less than or equal to the given number.
-Or terminate the half as the number is not a perfect square or can be a perfect square.
-How we are eliminating the half?
-We can see that if the mid element is less than the number then we can move to the right side.
-If the mid element is greater than the number then we can move to the left side.
-If the mid element is equal to the number then we can return the mid element.
-*/
+/**
+ * Thought Process:
+ * ----------------
+ * 1. **Problem Understanding**: 
+ *    - Find the floor of square root of a given number x
+ *    - If x is a perfect square, return exact square root
+ *    - If not, return largest integer whose square ≤ x
+ *    - Need to avoid using built-in sqrt() function
+ * 
+ * 2. **Key Insight**: 
+ *    - Numbers 1 to n can be partitioned by their square roots:
+ *      [1], [2,3], [4,5,6,7,8], [9,10,...,15], [16,17,...,24], ...
+ *    - For any number x, its floor sqrt lies in range [1, x]
+ *    - We can binary search this range to find the answer
+ * 
+ * 3. **Why Binary Search Works**:
+ *    - Search space is monotonic: if i² ≤ x, then all j² where j < i also ≤ x
+ *    - We want the largest i such that i² ≤ x
+ *    - This is essentially finding upper bound in the sequence of squares
+ * 
+ * 4. **Approach**:
+ *    - Set search range: low = 1, high = x
+ *    - Calculate mid and check mid² vs x
+ *    - If mid² = x: exact square root found
+ *    - If mid² < x: answer could be mid, but check if larger exists (search right)
+ *    - If mid² > x: mid is too large, search left
+ *    - Keep track of best valid answer (largest mid where mid² ≤ x)
+ * 
+ * 5. **Optimization Note**:
+ *    - Can optimize high = x/2 for x > 4, since sqrt(x) ≤ x/2 for x > 4
+ *    - Prevents overflow issues with large numbers
+ * 
+ * 6. **Edge Cases**:
+ *    - x = 0 or x = 1: return x itself
+ *    - Perfect squares: return exact square root
+ *    - Large numbers: ensure mid * mid doesn't overflow
+ * 
+ * 7. **Complexity**:
+ *    - Time: O(log x) - binary search
+ *    - Space: O(1) - constant extra space
+ */
 
 class Solution {
 public:

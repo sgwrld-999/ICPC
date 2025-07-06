@@ -1,24 +1,43 @@
 #include<bits/stdc++.h>
 using namespace std;
-/*
-Problem name : Peak element
-Problem Link : https://practice.geeksforgeeks.org/problems/peak-element/1#
-Solution : Binary Search
-Explanation : 
-    We can solve this problem using binary search. 
-    We can see that if the mid element is greater than its neighbours then it is the peak element.
-    If the mid element is not the peak element then we can see that if the mid element is less than the mid+1 element then the peak element will be on the right side of the mid element.
-    If the mid element is less than the mid-1 element then the peak element will be on the left side of the mid element.
-    We can see that the peak element will be the element which is greater than its neighbours.
-    So we can use binary search to find the peak element.
 
-    Imagine as a mountain, To reach the mountain thier will be a peak point and to reach it a slope will be thier.
-    If the mid element is greater than its neighbours then it is the peak element.
-    If isn't then we can say we are at the increaing slope of the mountain so we can move to the right side.
-    But if the mid element is less than its neighbours then we can say we are at the decreasing slope of the mountain so we can move to the left side.
-    We can use this property to find the peak element.  
-    
-*/
+/**
+ * Thought Process:
+ * ----------------
+ * 1. **Problem Understanding**: 
+ *    - Find any peak element in an array (element greater than its neighbors)
+ *    - Peak element: arr[i] > arr[i-1] && arr[i] > arr[i+1]
+ *    - Array boundaries are considered as negative infinity
+ *    - At least one peak is guaranteed to exist
+ * 
+ * 2. **Key Insight**: 
+ *    - Think of array as a mountain range - there's always at least one peak
+ *    - If we're on an ascending slope (arr[mid] < arr[mid+1]), peak must be ahead
+ *    - If we're on a descending slope (arr[mid] > arr[mid+1]), peak must be behind
+ *    - We can eliminate half the array at each step using this property
+ * 
+ * 3. **Why Binary Search Works**:
+ *    - Unlike standard binary search, we don't need the array to be sorted
+ *    - We use the slope direction to decide which half contains a peak
+ *    - Since boundaries are -∞, we're guaranteed to find a peak
+ * 
+ * 4. **Approach**:
+ *    - Handle edge cases: single element, first/last element peaks
+ *    - Use binary search on middle elements (indices 1 to n-2)
+ *    - If arr[mid] > arr[mid-1] && arr[mid] > arr[mid+1]: found peak
+ *    - If arr[mid] < arr[mid+1]: ascending slope, search right half
+ *    - Else: descending slope, search left half
+ * 
+ * 5. **Edge Cases**:
+ *    - Single element: always a peak
+ *    - First element > second element: first is peak
+ *    - Last element > second last element: last is peak
+ *    - All elements same: any element is peak
+ * 
+ * 6. **Complexity**:
+ *    - Time: O(log n) - binary search
+ *    - Space: O(1) - constant extra space
+ */
 
 
 //Leetcode 162. Find Peak Element

@@ -1,5 +1,49 @@
 #include <bits/stdc++.h>
 using namespace std;
+
+/**
+ * Thought Process:
+ * ----------------
+ * 1. **Problem Understanding**: 
+ *    - Find minimum element in rotated sorted array (no duplicates)
+ *    - Minimum element = rotation point = where array was "broken" and rotated
+ *    - Original: [1,2,3,4,5] → Rotated: [3,4,5,1,2] → Min is 1 at index 3
+ * 
+ * 2. **Key Insight**: 
+ *    - One half of rotated array is always sorted, other half contains the rotation point
+ *    - Minimum element is the start of the rotation (where large number meets small number)
+ *    - Can't directly eliminate half like normal binary search - need to track minimum seen so far
+ * 
+ * 3. **Why Normal Binary Search Fails**:
+ *    - Can't compare arr[mid] with target (don't know target)
+ *    - Array isn't globally sorted, but has local sorted segments
+ *    - Need different strategy to decide which half to eliminate
+ * 
+ * 4. **Modified Binary Search Strategy**:
+ *    - Identify which half is sorted by comparing boundary elements
+ *    - In sorted half: minimum is the leftmost element
+ *    - In unsorted half: minimum could be anywhere (need to search further)
+ *    - Always track the minimum element encountered
+ * 
+ * 5. **Approach**:
+ *    - If left half [low...mid] is sorted (arr[low] ≤ arr[mid]):
+ *      * Minimum in this half is arr[low]
+ *      * Real minimum might be in right half, so search right
+ *    - If right half [mid...high] is sorted:
+ *      * Minimum in this half is arr[mid]
+ *      * Real minimum might be in left half, so search left
+ *    - Keep updating global minimum found
+ * 
+ * 6. **Edge Cases**:
+ *    - Array not rotated: minimum is first element
+ *    - Single element: return that element
+ *    - Rotation by full cycle: same as not rotated
+ * 
+ * 7. **Complexity**:
+ *    - Time: O(log n) - binary search
+ *    - Space: O(1) - constant extra space
+ */
+
 /*
 Problem : Minimum in the Rotated Sorted Array or Find the index from where the array is rotated.
 Problem Link : https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/ or 

@@ -1,23 +1,42 @@
 #include<bits/stdc++.h>
 using namespace std;
-/*
-Problem name : Median of Two Sorted Arrays
-Problem link : https://leetcode.com/problems/median-of-two-sorted-arrays/
-Explanation  : Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
-               The overall run time complexity should be O(log (m+n)).
-               Example 1:
-               Input: nums1 = [1,3], nums2 = [2]
-               Output: 2.00000
-               Explanation: merged array = [1,2,3] and median is 2.
-               Approach 1 : 
-      x         1. Merge the two arrays.
-               2. Sort the merged array.
-               3. If the size of the merged array is even, return the average of the middle two elements.
-               4. If the size of the merged array is odd, return the middle element.
-               Time Complexity : O((m+n)log(m+n))
-               Space Complexity : O(m+n)
 
-*/
+/**
+ * Thought Process:
+ * ----------------
+ * 1. **Problem Understanding**: 
+ *    - Find median of two sorted arrays in O(log(m+n)) time
+ *    - Median: middle value in sorted order (or average of two middle values)
+ *    - Cannot simply merge arrays as that would be O(m+n) time
+ * 
+ * 2. **Key Insight**: 
+ *    - Use binary search on the smaller array to find the correct partition
+ *    - Partition both arrays such that left halves have same count as right halves
+ *    - Elements in left partition ≤ elements in right partition
+ *    - Median comes from the boundary elements of this partition
+ * 
+ * 3. **Optimal Approach (Binary Search)**:
+ *    - Binary search on smaller array (say array1) for partition point
+ *    - If we take 'i' elements from array1, take '(m+n+1)/2 - i' from array2
+ *    - Check if partition is valid: maxLeft1 ≤ minRight2 && maxLeft2 ≤ minRight1
+ *    - If maxLeft1 > minRight2: taking too many from array1, search left
+ *    - If maxLeft2 > minRight1: taking too few from array1, search right
+ * 
+ * 4. **Current Implementation (Suboptimal)**:
+ *    - Simple merge and sort approach: O((m+n)log(m+n)) time
+ *    - This violates the O(log(m+n)) requirement but is easier to understand
+ *    - Good for learning but should implement binary search version for interviews
+ * 
+ * 5. **Edge Cases**:
+ *    - One array is empty: median is from the other array
+ *    - Arrays have very different sizes
+ *    - Total size is even vs odd (affects median calculation)
+ *    - All elements of one array < all elements of other array
+ * 
+ * 6. **Complexity**:
+ *    - Current: O((m+n)log(m+n)) time, O(m+n) space
+ *    - Optimal: O(log(min(m,n))) time, O(1) space
+ */
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& array1, vector<int>& array2) {

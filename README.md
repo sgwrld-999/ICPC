@@ -1,6 +1,6 @@
 # ICPC Competitive Programming Repository
 
-Welcome to my comprehensive ICCP (International Collegiate Programming Contest) preparation repository! This collection contains implementations of fundamental algorithms, data structures, and solutions to competitive programming problems.
+Welcome to my comprehensive ICPC (International Collegiate Programming Contest) preparation repository! This collection contains implementations of fundamental algorithms, data structures, and solutions to competitive programming problems.
 
 ## 📁 Repository Structure
 

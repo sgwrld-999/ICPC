@@ -1,5 +1,49 @@
 #include <bits/stdc++.h>
 using namespace std;
+
+/**
+ * Thought Process:
+ * ----------------
+ * 1. **Problem Understanding**: 
+ *    - Find index of target in sorted array, or insertion position if not found
+ *    - Return index where target should be inserted to maintain sorted order
+ *    - This is exactly the definition of lower bound!
+ * 
+ * 2. **Key Insight**: 
+ *    - This problem IS lower bound in disguise
+ *    - Lower bound = first position where we can insert target to keep array sorted
+ *    - If target exists: return its index
+ *    - If target doesn't exist: return insertion point
+ * 
+ * 3. **Connection to Lower Bound**:
+ *    - Lower bound finds first index i where arr[i] >= target
+ *    - If arr[i] == target: target found at index i
+ *    - If arr[i] > target: target should be inserted at index i
+ *    - Perfect match for this problem's requirements
+ * 
+ * 4. **Approach**:
+ *    - Use binary search to find insertion position
+ *    - When nums[mid] == target: found exact position
+ *    - When nums[mid] > target: search left (target should be inserted before mid)
+ *    - When nums[mid] < target: search right (target should be inserted after mid)
+ *    - Return the final insertion position
+ * 
+ * 5. **Implementation Choice**:
+ *    - Recursive implementation shown (elegant but O(log n) space)
+ *    - Iterative version would be O(1) space
+ *    - Both approaches return 'low' when search space exhausted
+ * 
+ * 6. **Edge Cases**:
+ *    - Target smaller than all elements: insert at index 0
+ *    - Target larger than all elements: insert at end (index = size)
+ *    - Target equals existing element: return its index
+ *    - Empty array: insert at index 0
+ * 
+ * 7. **Complexity**:
+ *    - Time: O(log n) - binary search
+ *    - Space: O(log n) recursive, O(1) iterative
+ */
+
 /*
 problem : Search Insert Position
 Problem Link : https://leetcode.com/problems/search-insert-position/

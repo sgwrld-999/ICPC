@@ -1,3 +1,43 @@
+/**
+ * Thought Process:
+ * ----------------
+ * 1. **Problem Understanding**: 
+ *    - Place K aggressive cows in N stalls such that minimum distance between any two cows is maximized
+ *    - "Aggressive" means cows fight if too close - need to maximize minimum separation
+ *    - This is a classic "maximize the minimum" optimization problem
+ * 
+ * 2. **Key Insight**: 
+ *    - We want to find the largest possible value of minimum distance
+ *    - Can't directly compute this, but can check if a given distance is achievable
+ *    - Search space: distance ranges from 0 to (max_stall - min_stall)
+ *    - Perfect candidate for binary search on answer
+ * 
+ * 3. **Binary Search on Answer Pattern**:
+ *    - Question becomes: "Can we place K cows with minimum distance ≥ d?"
+ *    - If we can achieve distance d, we can achieve any distance < d (monotonic property)
+ *    - We want the largest d for which answer is YES
+ * 
+ * 4. **Validation Function (Greedy)**:
+ *    - Sort stalls first for optimal placement
+ *    - Place first cow at position 0
+ *    - For each subsequent stall, place cow if distance from last placed cow ≥ target distance
+ *    - Count how many cows we can place with this strategy
+ *    - If count ≥ K, then target distance is achievable
+ * 
+ * 5. **Why Greedy Works for Validation**:
+ *    - If we can place K cows with distance d, placing them as early as possible gives us most flexibility
+ *    - No benefit in delaying cow placement - only reduces options for remaining cows
+ * 
+ * 6. **Edge Cases**:
+ *    - K = 2: answer is max_distance (place at extreme ends)
+ *    - K = N: answer is minimum gap between consecutive stalls
+ *    - All stalls at same position: distance = 0
+ * 
+ * 7. **Complexity**:
+ *    - Time: O(N log N + N log(max_distance)) - sorting + binary search with O(N) validation
+ *    - Space: O(1) - constant extra space after sorting
+ */
+
 /*
 Problem name : Aggressive Cows
 Problem link : https://practice.geeksforgeeks.org/problems/cb3e4a0f5f0b4d6a8f5d98475e9e6b6c0d6b2d0d/1

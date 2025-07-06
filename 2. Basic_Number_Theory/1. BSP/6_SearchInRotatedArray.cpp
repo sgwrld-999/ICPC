@@ -1,18 +1,49 @@
 #include <bits/stdc++.h>
 using namespace std;
-/*
-Problem name : Search in Rotated Sorted Array a
-Problem link : https://leetcode.com/problems/search-in-rotated-sorted-array/
-Explanation  : We are given an integer array nums sorted in ascending order, and an integer target.
-               Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
-               (i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).
-               You should search for target in nums and if you found the target in the array return its index, otherwise return -1.
-               We can use binary search to solve this problem.
-               How? By using the property of the sorted array.
-               For sorted array for every i < j , nums[i] < nums[j](Increasing order) or nums[i] > nums[j](Decreasing order)
-               So, we can use this property to find the target element.
-               Rest explanation is in the code.               
-*/
+
+/**
+ * Thought Process:
+ * ----------------
+ * 1. **Problem Understanding**: 
+ *    - Search target in rotated sorted array (e.g., [4,5,6,7,0,1,2])
+ *    - Array was originally sorted, then rotated at unknown pivot
+ *    - Need O(log n) solution - can't use linear search
+ *    - No duplicates in array (important constraint)
+ * 
+ * 2. **Key Insight**: 
+ *    - Although entire array isn't sorted, one half is always sorted
+ *    - At any mid point, either left half [low...mid] or right half [mid...high] is sorted
+ *    - Can determine which half is sorted by comparing boundary elements
+ *    - Once we know sorted half, can check if target lies in that range
+ * 
+ * 3. **Critical Binary Search Modification**:
+ *    - Standard binary search assumes entire array is sorted
+ *    - Here: identify sorted half, check if target is in that range
+ *    - If target in sorted half: search that half normally
+ *    - If target not in sorted half: search the other half
+ * 
+ * 4. **Approach**:
+ *    - Check nums[mid] == target (lucky case)
+ *    - Determine sorted half: if nums[low] ≤ nums[mid], left half is sorted
+ *    - For sorted left half: if nums[low] ≤ target ≤ nums[mid], search left
+ *    - Otherwise search right
+ *    - Similar logic for sorted right half
+ * 
+ * 5. **Why This Works**:
+ *    - Rotation creates exactly one "break" point where large number is followed by small
+ *    - This break can only exist in at most one half at any mid point
+ *    - The other half maintains its sorted property
+ * 
+ * 6. **Edge Cases**:
+ *    - Array not rotated (rotation by 0): normal binary search
+ *    - Single element: direct comparison
+ *    - Target at rotation point (smallest/largest element)
+ *    - Target doesn't exist: return -1
+ * 
+ * 7. **Complexity**:
+ *    - Time: O(log n) - binary search with constant time decisions
+ *    - Space: O(1) - constant extra space
+ */
 class Solution {
 public:
     int search(vector<int>& nums, int target) {

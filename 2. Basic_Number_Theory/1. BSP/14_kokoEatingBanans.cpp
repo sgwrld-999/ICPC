@@ -1,29 +1,48 @@
 #include <bits/stdc++.h>
 using namespace std;
-/*
-Problem name : Koko Eating Bananas
-Problem link : https://leetcode.com/problems/koko-eating-bananas/description/
-Explanation : Koko loves to eat bananas. There are N piles of bananas, the i-th pile has piles[i] bananas. The guards have gone and will come back in H hours.
-Koko can decide her bananas-per-hour eating speed of K. Each hour, she chooses some pile of bananas and eats K bananas from that pile. If the pile has less than K bananas, she eats all of them instead and will not eat any more bananas during this hour.
 
-According to the problem, Koko wants to eat all the bananas in the least number of hours. Return the minimum integer K such that she can eat all the bananas within H hours.
-Brute force approach : We can iterate over all the possible values of K from 1 to max(piles) and calculate the total hours required to eat all the bananas. We can return the minimum K such that the total hours are less than or equal to H.
-Why max(piles)? Because we've to find the minimum. We can iterate over the range of 1 to infinity but that will not gonna do any good.
-So, limiting the range to max(piles) will help us to find the minimum in the least time.
-Time complexity : O(n*max(piles)) where n is the size of the piles array.
-
-Optimized approach : Binary search as we've to find the minimum from a given range of values. 
-We can find the minimum and maximum values of the range of K. We can then apply binary search to find the minimum K such that the total hours are less than or equal to H.
-Time complexity : O(n*log(max(piles))) where n is the size of the piles array.
-
-NOTE1 : ceil() function is used to round up the value to the nearest integer.So we've to use the double to avoid flooring the value by int.
-NOTE2 : The total hours are calculated by dividing the pile by the bananas per hour and then rounding up the value to the nearest integer. If the values is not exactly divisible, we've to eat the remaining bananas in the next hour. a
-and if the bananas are less than the bananas per hour, we take the ceil of the division.
-
-Example : piles = [3,6,7,11], H = 8
-            total hours for K = 4 : 1 + 2 + 2 + 3 = 8 as 3/4 = 1, 6/4 = 2, 7/4 = 2, 11/4 = 3
-            
-*/
+/**
+ * Thought Process:
+ * ----------------
+ * 1. **Problem Understanding**: 
+ *    - Koko eats bananas at rate K bananas/hour from piles
+ *    - Must finish all bananas within H hours
+ *    - Find minimum eating speed K to achieve this
+ *    - If pile has < K bananas, eat all and waste rest of hour
+ * 
+ * 2. **Key Insight**: 
+ *    - This is optimization problem: minimize K subject to constraint (total time ≤ H)
+ *    - Search space: K ranges from 1 to max(piles)
+ *    - If K works, any larger K also works (monotonic property)
+ *    - Perfect candidate for binary search on answer
+ * 
+ * 3. **Why Binary Search on Answer**:
+ *    - We're not searching in array, but searching for optimal value in range
+ *    - Function f(K) = "can finish in H hours with speed K" is monotonic
+ *    - Want smallest K where f(K) = true
+ *    - This is exactly lower bound problem in disguise
+ * 
+ * 4. **Approach**:
+ *    - Range: low = 1, high = max(piles)
+ *    - For each mid (candidate speed), calculate total time needed
+ *    - Time for pile[i] = ceil(pile[i] / speed) hours
+ *    - If total_time ≤ H: try smaller speed (search left)
+ *    - If total_time > H: need larger speed (search right)
+ * 
+ * 5. **Implementation Details**:
+ *    - Use ceil((double)pile / (double)speed) to handle integer division correctly
+ *    - Total time = sum of ceiling divisions for all piles
+ *    - Return the smallest valid speed found
+ * 
+ * 6. **Edge Cases**:
+ *    - H = number of piles: minimum speed is max(piles)
+ *    - Single pile: need exactly ceil(pile/H) speed
+ *    - All piles equal: straightforward calculation
+ * 
+ * 7. **Complexity**:
+ *    - Time: O(n * log(max(piles))) - binary search with O(n) validation
+ *    - Space: O(1) - constant extra space
+ */
 class Solution {
 public:
     int calculateTotalHours(vector<int>& piles, int bananasPerHour) {

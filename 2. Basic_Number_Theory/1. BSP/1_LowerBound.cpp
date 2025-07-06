@@ -1,5 +1,41 @@
 #include <bits/stdc++.h>
 using namespace std;
+
+/**
+ * Thought Process:
+ * ----------------
+ * 1. **Problem Understanding**: 
+ *    - Find the first index where arr[i] >= target (smallest index satisfying condition)
+ *    - If no such index exists, return -1 or array size (implementation dependent)
+ *    - This is fundamental for range queries and insertion point finding
+ * 
+ * 2. **Key Insight**: 
+ *    - Lower bound partitions array into: [elements < target] [elements >= target]
+ *    - We want the first element of the second partition
+ *    - Binary search can find this boundary efficiently
+ * 
+ * 3. **Approach**:
+ *    - Use modified binary search that tracks potential answer
+ *    - When arr[mid] >= target: this could be answer, but check left for smaller index
+ *    - When arr[mid] < target: answer must be to the right
+ *    - Always update answer when condition is satisfied and continue searching left
+ * 
+ * 4. **Critical Difference from Standard Binary Search**:
+ *    - Don't stop when condition is met - keep searching for leftmost occurrence
+ *    - Track the best answer found so far
+ *    - Search left when condition is satisfied (to find smaller valid index)
+ * 
+ * 5. **Edge Cases**:
+ *    - All elements < target: return -1 (no valid index)
+ *    - All elements >= target: return index 0
+ *    - Target larger than all elements: return -1
+ *    - Empty array: return -1
+ * 
+ * 6. **Complexity**:
+ *    - Time: O(log n) - binary search
+ *    - Space: O(1) - only using constant extra space
+ */
+
 /*
 The lower bound algorithm finds the first or the smallest index in a sorted array where the value at that index is greater than or equal to a given key i.e. x.
 

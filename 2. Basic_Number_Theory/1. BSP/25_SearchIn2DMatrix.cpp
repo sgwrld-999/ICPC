@@ -1,6 +1,52 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+/**
+ * Thought Process:
+ * ----------------
+ * 1. **Problem Understanding**: 
+ *    - Search target in 2D matrix where rows and columns are sorted
+ *    - Each row's first element > previous row's last element (globally sorted)
+ *    - Need efficient solution better than O(n*m) brute force
+ * 
+ * 2. **Key Insight**: 
+ *    - Matrix can be treated as sorted 1D array when read row by row
+ *    - Index mapping: 1D index → 2D coordinates
+ *    - row = index / cols, col = index % cols
+ *    - This allows binary search on entire matrix in O(log(n*m))
+ * 
+ * 3. **Multiple Approaches**:
+ *    - **Brute Force**: Check every element - O(n*m) time
+ *    - **Row-wise Binary Search**: Binary search each row - O(n*log m) time  
+ *    - **Treat as 1D Array**: Single binary search - O(log(n*m)) time (optimal)
+ * 
+ * 4. **Optimal Approach (Treat as 1D)**:
+ *    - Map 2D matrix to 1D conceptually: [0, 1, 2, ..., n*m-1]
+ *    - For any 1D index 'mid': row = mid/m, col = mid%m
+ *    - Perform standard binary search with this mapping
+ *    - Effectively searching sorted array of size n*m
+ * 
+ * 5. **Why Index Mapping Works**:
+ *    - Matrix is row-major order: [0][0], [0][1], ..., [0][m-1], [1][0], ...
+ *    - Each row has m elements, so element at position i is at row i/m
+ *    - Column position within row is i%m (remainder after dividing by row length)
+ * 
+ * 6. **Alternative: Row-wise Search**:
+ *    - First find potential row (where target could exist)
+ *    - Then binary search within that row
+ *    - Less efficient but easier to understand
+ * 
+ * 7. **Edge Cases**:
+ *    - Empty matrix: return false
+ *    - Single element: direct comparison
+ *    - Target smaller than matrix[0][0]: not found
+ *    - Target larger than matrix[n-1][m-1]: not found
+ * 
+ * 8. **Complexity**:
+ *    - Time: O(log(n*m)) for 1D approach, O(n*log m) for row-wise
+ *    - Space: O(1) - constant extra space for all approaches
+ */
+
 /*
 Problem name : Search in a 2D matrix
 Problem link : https://leetcode.com/problems/search-a-2d-matrix/
