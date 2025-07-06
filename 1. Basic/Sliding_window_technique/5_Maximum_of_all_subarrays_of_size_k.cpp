@@ -13,16 +13,6 @@ Explanation:
 
 class Solution {
 public:
-    int getMax(vector<int>& nums, int left, int right, int k) {
-        int maxi = INT_MIN; 
-
-        for(int i = left; i <= right; i++) {
-            maxi = max(maxi, nums[i]);
-        }
-
-        return maxi;
-    }
-
     // Remove the first implementation to avoid duplicate definition errors
 
     vector<int> maxSlidingWindow(vector<int>& nums, int k){
