@@ -10,6 +10,8 @@ Return the result modulo 10^9+7.
 Expected Time Complexity: O(N)
 Expected Auxiliary Space: O(1)
 
+Solution: https://chatgpt.com/share/6898c314-f660-8006-bd21-464573aee006
+
 */
 // } Driver Code Ends
 
@@ -58,4 +60,3 @@ int main() {
     }
     return 0;
 }
-// } Driver Code Ends
