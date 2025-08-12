@@ -8,7 +8,7 @@ Approach1: Checking from 2 to n - 1 and keeping a counter to check whether the n
 Approach2: Checking from 2 to sqrt(n) and keeping a counter to check whether the number is divisible by more than 2 number or not. If the number is divisible by more than 2 numbers, then the number is not prime.
 
 Why Approach2 is better than Approach1?
-Lets understasnd with and example :
+Lets understand with and example :
 Lets N = 36 
 1 * 36 = 36
 2 * 18 = 36

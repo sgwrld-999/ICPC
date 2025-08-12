@@ -12,30 +12,78 @@ Approach2: Sieve of Eratosthenes
             Time complexity: O(n * log(log(n)))
             Space complexity: O(n)
 */
-class Solution{
-    public:
-    vector<int> sieveOfEratosthenes(int N) {
-        vector<int> prime(N + 1, 1);
+/*
+### Sieve of Eratosthenes 
+    - Theory: 
+    - Explanation: 
+        - Considering we've a array of let's "N" numbers. we'll all the multiples of the given number "x" 
+            if x is prime which means if we multiply with natural numbers. The resultant value will be non-primes. 
+                5 x 1 = 5
+                5 x 2 = 10
+                5 x 3 = 15 
+            We'll mark all the values till x X m <= N
+            
+             
+*/
+#include <iostream>
+#include <vector>
+#include <cmath>
+using namespace std;
 
-        prime[0] = prime[1] = 0 ; // 0 and 1 are not prime numbers
-        int sqrtN = sqrt(N);
-        for(int i = 2 ; i < sqrtN ; i++) // checking from 2 to sqrt(n)  -> Why we are checking till sqrt(n) only? Because if we go beyond the sqrt(n) then the number will go beyond n and we already have checked the number till n.
-        {
-            if(prime[i] == 1)
-            {
-                for(int j = i * 2 ; j <= N ; j+= i){ //Why j += i? Because at every iteration we are marking the multiples of i as false so we are incrementing the value of j by i. example 5 * 2 = 10 -> 5 + 5 * 2 = 10 + 5 = 15
-                    prime[j] = 0;
+/**
+ * Problem Understanding:
+ * ----------------------
+ * We need to find all prime numbers up to a given integer N.
+ * A prime number is a number greater than 1 that has no positive divisors
+ * other than 1 and itself.
+ *
+ * Mathematical Insight:
+ * ---------------------
+ * - A composite number must have at least one factor ≤ √N.
+ * - This means when checking for primality, we only need to consider numbers
+ *   up to √N as potential factors.
+ * - The Sieve of Eratosthenes uses this property to mark all multiples
+ *   of each found prime as non-prime.
+ *
+ * Algorithm:
+ * ----------
+ * 1. Create a boolean array `isPrime` of size N+1, initialized to true.
+ * 2. Mark `isPrime[0]` and `isPrime[1]` as false (0 and 1 are not prime).
+ * 3. For each number i from 2 to √N:
+ *      - If `isPrime[i]` is true:
+ *          - Mark all multiples of i starting from i*i as false
+ *            (numbers less than i*i would have been marked already).
+ * 4. Collect all indices marked true in `isPrime` — these are the primes.
+ *
+ * Time Complexity:
+ * ----------------
+ * O(N log log N) — classic complexity of the Sieve of Eratosthenes.
+ *
+ * Space Complexity:
+ * -----------------
+ * O(N) — for storing the boolean array of prime flags.
+ */
+class Solution {
+public:
+    vector<int> sieveOfEratosthenes(int N) {
+        vector<bool> isPrime(N + 1, true);
+        isPrime[0] = isPrime[1] = false;
+
+        int limit = sqrt(N);
+        for (int i = 2; i <= limit; ++i) {
+            if (isPrime[i]) {
+                for (int j = i * i; j <= N; j += i) {
+                    isPrime[j] = false;
                 }
             }
         }
 
         vector<int> primeNumbers;
-        for(int i = 0 ;i < N ; i++){
-            if(prime[i] == 1){
+        for (int i = 2; i <= N; ++i) {
+            if (isPrime[i]) {
                 primeNumbers.push_back(i);
             }
         }
-
         return primeNumbers;
     }
 };
@@ -43,9 +91,15 @@ class Solution{
 int main() {
     Solution obj;
     int N = 20;
+
     vector<int> primeNumbers = obj.sieveOfEratosthenes(N);
-    for(int i = 0 ; i < primeNumbers.size() ; i++){
-        cout << primeNumbers[i] << " ";
+
+    cout << "Primes up to " << N << ": ";
+    for (size_t i = 0; i < primeNumbers.size(); ++i) {
+        cout << primeNumbers[i];
+        if (i != primeNumbers.size() - 1) cout << " ";
     }
+    cout << endl;
+
     return 0;
 }
