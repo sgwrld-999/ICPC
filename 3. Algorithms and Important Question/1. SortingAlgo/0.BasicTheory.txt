@@ -1,4 +1,4 @@
-Sorting
+### Sorting
 
 Definition:
 - Rearranging a list or array of elements according to a comparison operator.
@@ -10,7 +10,16 @@ Sorting Terminology:
 - Internal Sorting: Data fits in main memory.
     - Examples: Heap Sort, Bubble Sort, Selection Sort, Quick Sort, Shell Sort, Insertion Sort.
 - External Sorting: Data does not fit in memory, used for large datasets.
-    - Examples: Merge Sort, Tag Sort, Polyphase Sort, Four Tape Sort,- Space Complexity: Memory required to execute the algorithm.
+    - Examples: Merge Sort, Tag Sort, Polyphase Sort, Four Tape Sort, External Radix Sort.
+- Stable Sorting: Preserves the order of equal elements.
+    - Examples: Merge Sort, Insertion Sort, Bubble Sort.
+- Unstable Sorting: Does not preserve the order of equal elements.
+    - Examples: Quick Sort, Heap Sort, Shell Sort.
+
+Characteristics of Sorting Algorithms:
+- Time Complexity: Measures how long the algorithm takes.
+    - Best-case, average-case, and worst-case performance.
+- Space Complexity: Memory required to execute the algorithm.
 - Stability: Whether the algorithm preserves the order of equal elements.
 - In-Place Sorting: Does not need extra memory for sorting.
 - Adaptivity: Improves performance if data is already partially sorted.
