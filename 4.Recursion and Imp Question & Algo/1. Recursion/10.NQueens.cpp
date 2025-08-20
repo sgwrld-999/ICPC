@@ -22,13 +22,14 @@ What we'll do is we put it in the first row and then we'll check for the next ro
 
 Rest is in the code.
 
+time c
 */
 class Solution {
 public:
     bool isSafe(int row, int col, vector<string>& board, int n){
         int dupRow = row ;
         int dupCol = col ;
-
+        // Check upper diagonal
         while(row >= 0 && col >= 0){
             if(board[row][col] == 'Q'){
                 return false;

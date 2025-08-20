@@ -3,8 +3,8 @@ using namespace std;
 
 /*
 Problem name : Find all Permutations of a string which has Unique Characters or integers
-
-Explanation : As question is saying find all permutations of a string which has unique characters. Which is a clear indication of the 
+Problem Link : https://www.geeksforgeeks.org/find-all-possible-permutations-of-words-formed-by-characters-of-a-given-string/
+Explanation : As question is saying find all permutations of a string which has unique characters. Which is a clear indication of the
               recursion and backtracking. So, we will use the recursion and backtracking to solve this problem. We will use the
                 recursion to find all the permutations of the string and we will use the backtracking to remove the character from the
                 string which we have already used in the permutation. So, we will use the map to keep track of the characters which we
